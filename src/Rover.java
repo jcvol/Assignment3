@@ -1,7 +1,5 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.concurrent.*;
 
 public class Rover {
@@ -30,9 +28,5 @@ public class Rover {
         };
 
         scheduler.scheduleAtFixedRate(reporter, 700, 600, TimeUnit.MILLISECONDS);
-
-        while (true){
-
-        }
     }
 }
