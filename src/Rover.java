@@ -9,7 +9,15 @@ public class Rover {
         Sensor sensor = new Sensor(readings);
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(8);
         scheduler.scheduleAtFixedRate(sensor, 0, 100, TimeUnit.MILLISECONDS);
+        scheduler.scheduleAtFixedRate(sensor, 0, 100, TimeUnit.MILLISECONDS);
+        scheduler.scheduleAtFixedRate(sensor, 0, 100, TimeUnit.MILLISECONDS);
+        scheduler.scheduleAtFixedRate(sensor, 0, 100, TimeUnit.MILLISECONDS);
+        scheduler.scheduleAtFixedRate(sensor, 0, 100, TimeUnit.MILLISECONDS);
+        scheduler.scheduleAtFixedRate(sensor, 0, 100, TimeUnit.MILLISECONDS);
+        scheduler.scheduleAtFixedRate(sensor, 0, 100, TimeUnit.MILLISECONDS);
+        scheduler.scheduleAtFixedRate(sensor, 0, 100, TimeUnit.MILLISECONDS);
 
+        // reports highest and lowest temperatures at given intervals
         var reporter = new Runnable(){
             public void run(){
                 final var readingsList = new ArrayList<>(readings);
@@ -27,6 +35,9 @@ public class Rover {
             }
         };
 
-        scheduler.scheduleAtFixedRate(reporter, 700, 600, TimeUnit.MILLISECONDS);
+        // we have potentially two threads that handle reporting. if the first takes too long,
+        // the second will be created
+        ScheduledExecutorService reportScheduler = Executors.newScheduledThreadPool(2);
+        reportScheduler.scheduleAtFixedRate(reporter, 700, 600, TimeUnit.MILLISECONDS);
     }
 }
