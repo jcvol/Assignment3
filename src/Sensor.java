@@ -20,7 +20,6 @@ public class Sensor implements Runnable{
 
     public void run(){
         final var temp = collectTemp();
-        System.out.println(temp + "");
         final var reading = new TempReading(temp, Timestamp.from(Instant.now()));
         sharedReadings.add(reading);
     }
