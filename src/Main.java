@@ -1,6 +1,9 @@
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+// To improve on the strategy implemented by the servants and the minotaur, I have opted to
+// use synchronized methods (locks) to avoid servants dropping gifts.
+
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         // ordered chain of presents, arranged by tag number in ascending order
